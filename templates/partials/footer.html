@@ -1,0 +1,131 @@
+{% load static %}
+
+<style>
+.footer {
+    background: linear-gradient(135deg, #020617, #0f172a, #1e293b);
+    color: #ccc;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.footer h4, .footer h5 {
+    color: #facc15;
+}
+
+.footer a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer a:hover {
+    color: #facc15;
+    padding-left: 5px;
+}
+
+.footer .social-icons a {
+    font-size: 18px;
+    margin: 0 8px;
+    transition: 0.3s;
+}
+
+.footer .social-icons a:hover {
+    color: #facc15;
+    transform: scale(1.2);
+}
+
+.footer hr {
+    border-color: rgba(255,255,255,0.1);
+}
+
+.footer-bottom {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Map */
+.footer-map iframe {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .footer-map iframe{
+        height: 200px;
+    }
+}
+</style>
+
+<footer class="footer pt-5 pb-3 mt-5">
+<div class="container">
+
+    <!-- Top Branding -->
+    <div class="text-center mb-4">
+        <h3 class="fw-bold">Kashvi Tech 🚀</h3>
+        <p>Empowering your business with modern digital solutions.</p>
+
+        <div class="social-icons mt-2">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+
+        <!-- Digital Marketing -->
+        <div class="col-md-3 mb-4">
+            <h5>Digital Marketing</h5>
+            <ul class="list-unstyled">
+                <li>SEO Optimization</li>
+                <li>Local SEO</li>
+                <li>Lead Generation</li>
+                <li>Content Marketing</li>
+            </ul>
+        </div>
+
+        <!-- Development -->
+        <div class="col-md-3 mb-4">
+            <h5>Development</h5>
+            <ul class="list-unstyled">
+                <li>Website Development</li>
+                <li>App Development</li>
+                <li>E-commerce</li>
+                <li>WordPress</li>
+            </ul>
+        </div>
+
+        <!-- Map -->
+        <div class="col-md-3 mb-4 footer-map">
+            <h5>Our Location</h5>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.2213886115555!2d85.3875817!3d26.0916909!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed1113d01309f7%3A0x69da6fab6ace4195!2sKASHVI%20PALACE!5e0!3m2!1sen!2sin!4v1775749736202!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-md-3 mb-4">
+            <h5>Contact</h5>
+            <p><i class="fas fa-map-marker-alt me-2"></i> Muzafferpur, Bihar</p>
+            <p><i class="fas fa-phone me-2"></i> +91 9031077556</p>
+            <p><i class="fas fa-envelope me-2"></i> info@kashvitech.com</p>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <!-- Bottom -->
+    <div class="text-center footer-bottom">
+        <p class="mb-0">
+            © 2026 Kashvi Tech | Designed with ❤️ by Kashvi Team
+        </p>
+    </div>
+
+</div>
+</footer>

@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+    body {
+        background: linear-gradient(135deg, #020617, #020617);
+        color: #e2e8f0;
+    }
+
+    /* HERO */
+    .services-hero {
+        padding: 120px 20px 80px;
+        text-align: center;
+    }
+
+    .services-hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, #facc15, #fde047);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .services-hero p {
+        color: #94a3b8;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+        text-align: center;
+        margin: 60px 0 30px;
+    }
+
+    .section-title h2 {
+        font-weight: 700;
+        color: white;
+    }
+
+    .section-title p {
+        color: #94a3b8;
+    }
+
+    /* SERVICE CARD */
+    .service-card {
+        padding: 25px;
+        border-radius: 15px;
+        background: rgba(255,255,255,0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.05);
+        transition: 0.4s;
+        height: 100%;
+    }
+
+    .service-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: #facc15;
+        box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
+    }
+
+    .service-icon {
+        font-size: 32px;
+        color: #facc15;
+        margin-bottom: 10px;
+    }
+
+    .service-card h5 {
+        color: white;
+        font-weight: 600;
+    }
+
+    .service-card p {
+        font-size: 14px;
+        color: #94a3b8;
+    }
+
+    /* CTA */
+    .cta-box {
+        background: linear-gradient(135deg, #0f172a, #020617);
+        padding: 60px 30px;
+        border-radius: 20px;
+        text-align: center;
+        border: 1px solid rgba(255,255,255,0.05);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-box::before {
+        content: '';
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: #facc15;
+        filter: blur(120px);
+        top: -50px;
+        left: -50px;
+        opacity: 0.3;
+    }
+
+    .cta-box h2 {
+        color: white;
+        font-weight: 700;
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, #facc15, #fde047);
+        border: none;
+        color: black;
+        font-weight: 600;
+        border-radius: 30px;
+        padding: 10px 30px;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<!-- HERO -->
+<section class="services-hero">
+    <h1 data-aos="fade-up">Our Services</h1>
+    <p data-aos="fade-up" data-aos-delay="200">
+        Scalable, secure, and innovative digital solutions for modern businesses.
+    </p>
+</section>
+
+<div class="container">
+
+    <!-- DIGITAL MARKETING -->
+    <div class="section-title" id="seo" data-aos="fade-up">
+        <h2>Digital Marketing</h2>
+        <p>Boost your brand visibility & generate leads</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6" data-aos="zoom-in">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-search"></i></div>
+                <h5>SEO Optimization</h5>
+                <p>Rank higher on Google and increase organic traffic.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6" id="local-seo" data-aos="zoom-in">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <h5>Local SEO</h5>
+                <p>Target local customers and dominate nearby searches.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6" id="lead" data-aos="zoom-in">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
+                <h5>Lead Generation</h5>
+                <p>Convert traffic into high-quality leads.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6" id="google" data-aos="zoom-in">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-ad"></i></div>
+                <h5>Google Ads</h5>
+                <p>High ROI ad campaigns with precise targeting.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEVELOPMENT -->
+    <div class="section-title" id="web" data-aos="fade-up">
+        <h2>Development</h2>
+        <p>Modern, scalable & secure applications</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6" data-aos="zoom-in">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-code"></i></div>
+                <h5>Web Development</h5>
+                <p>Custom websites tailored to your needs.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6" id="ecommerce" data-aos="zoom-in">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+                <h5>E-commerce</h5>
+                <p>Secure and scalable online store solutions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DESIGN -->
+    <div class="section-title" id="uiux" data-aos="fade-up">
+        <h2>Designing</h2>
+        <p>Creative & user-friendly experiences</p>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-6" data-aos="zoom-in">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-pencil-ruler"></i></div>
+                <h5>UI/UX Design</h5>
+                <p>Intuitive and engaging user interfaces.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6" id="graphics" data-aos="zoom-in">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-palette"></i></div>
+                <h5>Graphics Design</h5>
+                <p>Creative visuals to elevate your brand.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- CTA -->
+<section class="container mb-5">
+    <div class="cta-box" data-aos="zoom-in">
+        <h2>🚀 Let’s Build Your Next Big Project</h2>
+        <p class="mt-2">Partner with Kashvi Tech for scalable growth.</p>
+        <a href="{% url 'contact:contact' %}" class="btn btn-primary mt-3">
+            Get Started
+        </a>
+    </div>
+</section>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true });
+</script>
+
+{% endblock %}

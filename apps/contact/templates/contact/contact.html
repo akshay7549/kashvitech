@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+    body {
+        background: #020617;
+        color: white;
+    }
+
+    .contact-hero {
+        padding: 80px 0;
+        text-align: center;
+        background: linear-gradient(135deg, #1e3a8a, #020617);
+    }
+
+    .contact-box {
+        background: rgba(255,255,255,0.05);
+        padding: 30px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        transition: 0.3s;
+    }
+
+    .contact-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .form-control {
+        background: white;
+        border: 1px solid #1e293b;
+        color: black;
+        border-radius: 10px;
+        padding: 12px;
+    }
+
+    .form-control:focus {
+        border-color: orange;
+        box-shadow: 0 0 10px rgba(250,204,21,0.5);
+    }
+
+    .btn-custom {
+        background: #facc15;
+        border-radius: 30px;
+        padding: 12px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-custom:hover {
+        transform: scale(1.05);
+        background: #eab308;
+    }
+
+    .icon {
+        font-size: 22px;
+        color: #facc15;
+        margin-right: 10px;
+    }
+
+    .spinner-border {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+</style>
+
+<!-- HERO -->
+<section class="contact-hero">
+    <div class="container">
+        <h1 data-aos="fade-up">Contact Us 📩</h1>
+        <p data-aos="fade-up" data-aos-delay="200">
+            Let’s build something amazing together 🚀
+        </p>
+    </div>
+</section>
+
+<section class="container mt-5 mb-5">
+    <div class="row">
+
+        <!-- INFO -->
+        <div class="col-md-5 mb-4" data-aos="fade-right">
+            <div class="contact-box">
+                <h4 class="mb-4">Get in Touch</h4>
+
+                <p><i class="fas fa-envelope icon"></i> info@kashvitech.com</p>
+                <p><i class="fas fa-phone icon"></i> +91 98765 43210</p>
+                <p><i class="fas fa-map-marker-alt icon"></i> India</p>
+
+                <hr>
+
+                <h5>Follow Us</h5>
+                <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-light me-3"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+        <!-- FORM -->
+        <div class="col-md-7" data-aos="fade-left">
+            <div class="contact-box">
+                <h4 class="mb-4">Send Message</h4>
+
+                <!-- Alerts -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} auto-hide">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post" id="contactForm">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        {{ form.name }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.email }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.phone }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.subject }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.message }}
+                    </div>
+
+                    <!-- Button -->
+                    <button type="submit" class="btn btn-custom w-100" id="submitBtn">
+                        <span id="btnText">Send Message 🚀</span>
+                        <span id="spinner" class="spinner-border d-none"></span>
+                    </button>
+                </form>
+
+                <!-- WhatsApp -->
+                <div class="mt-4 text-center">
+                    <a href="https://wa.me/919031077556" target="_blank"
+                       class="btn btn-success w-100">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- JS -->
+<script>
+    const form = document.getElementById("contactForm");
+    const btn = document.getElementById("submitBtn");
+    const spinner = document.getElementById("spinner");
+    const text = document.getElementById("btnText");
+
+    form.addEventListener("submit", () => {
+        text.innerHTML = "Sending...";
+        spinner.classList.remove("d-none");
+        btn.disabled = true;
+    });
+
+    // Auto hide alerts
+    setTimeout(() => {
+        document.querySelectorAll(".auto-hide").forEach(el => {
+            el.style.display = "none";
+        });
+    }, 3000);
+</script>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000 });
+</script>
+
+{% endblock %}

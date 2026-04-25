@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- SEO -->
+    <title>{% block title %}Kashvi Tech - Digital Solutions{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Kashvi Tech provides digital marketing, web development and design services.{% endblock %}">
+    <meta name="keywords" content="Kashvi Tech, SEO, Web Development, Digital Marketing">
+    <meta name="author" content="Kashvi Tech">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 🔥 Open Graph (Social Share) -->
+    <meta property="og:title" content="Kashvi Tech">
+    <meta property="og:description" content="Digital Marketing & Web Solutions">
+    <meta property="og:image" content="{% static 'images/logo.png' %}">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+
+    <!-- Bootstrap + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            transition: 0.3s;
+        }
+
+        main {
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* 🌙 Dark Mode */
+        .dark-mode {
+            background: #020617;
+            color: #e2e8f0;
+        }
+
+        /* 🔥 Loader */
+        #loader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #020617;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+        }
+
+        /* 🔥 Scroll Progress Bar */
+        #progressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #ffc107;
+            width: 0%;
+            z-index: 9999;
+        }
+
+        /* WhatsApp */
+        .wa-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+        }
+
+        .whatsapp-float {
+            background: #25D366;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 50%;
+            font-size: 22px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .wa-text {
+            position: absolute;
+            right: 70px;
+            bottom: 10px;
+            background: #0f172a;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .wa-container:hover .wa-text {
+            opacity: 1;
+        }
+
+        /* Scroll Top */
+        #topBtn {
+            position: fixed;
+            bottom: 90px;
+            right: 25px;
+            display: none;
+            border-radius: 50%;
+        }
+
+        #topBtn.show {
+            display: block;
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+<!-- 🔥 LOADER -->
+<div id="loader">
+    <h3 class="text-warning">Loading...</h3>
+</div>
+
+<!-- 🔥 PROGRESS BAR -->
+<div id="progressBar"></div>
+
+<!-- NAVBAR -->
+{% include 'partials/navbar.html' %}
+
+<!-- MAIN -->
+<main class="container">
+
+    <!-- ALERTS -->
+    {% if messages %}
+        <div class="mt-3">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+</main>
+
+<!-- FOOTER -->
+{% include 'partials/footer.html' %}
+
+<!-- SCROLL TOP -->
+<button onclick="scrollToTop()" id="topBtn" class="btn btn-warning">↑</button>
+
+<!-- WHATSAPP -->
+<div class="wa-container">
+    <a href="https://wa.me/917549645076" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <span class="wa-text">Chat with us</span>
+</div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* 🔥 LOADER */
+window.addEventListener("load", () => {
+    document.getElementById("loader").style.display = "none";
+});
+
+/* 🌙 DARK MODE (Persistent) */
+if(localStorage.getItem("mode") === "dark"){
+    document.body.classList.add("dark-mode");
+}
+
+function toggleMode(){
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("mode",
+        document.body.classList.contains("dark-mode") ? "dark" : "light"
+    );
+}
+
+/* 📊 SCROLL PROGRESS */
+window.onscroll = () => {
+    let scrollTop = document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    document.getElementById("progressBar").style.width = (scrollTop / height) * 100 + "%";
+
+    document.getElementById("topBtn").classList.toggle("show", scrollTop > 200);
+};
+
+/* ⬆️ SCROLL TO TOP */
+function scrollToTop(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>
