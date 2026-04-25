@@ -11,10 +11,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 # ✅ FIXED (syntax + fallback)
-ALLOWED_HOSTS = os.getenv(
-    'ALLOWED_HOSTS',
-    'kashvitech-production.up.railway.app'
-).split(',')
+ALLOWED_HOSTS = ['*']
 
 
 # =========================
