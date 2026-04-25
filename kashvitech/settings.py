@@ -10,9 +10,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key')
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.environ.get(
+# ✅ FIXED (syntax + fallback)
+ALLOWED_HOSTS = os.getenv(
     'ALLOWED_HOSTS',
-    'ALLOWED_HOSTS'
+    'kashvitech-production.up.railway.app'
 ).split(',')
 
 
@@ -27,7 +28,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Custom Apps
     'apps.main',
     'apps.contact',
     'apps.services',
@@ -39,8 +39,6 @@ INSTALLED_APPS = [
 # =========================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
-    # WhiteNoise for static files
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -86,11 +84,12 @@ WSGI_APPLICATION = 'kashvitech.wsgi.application'
 # =========================
 # 🗄️ DATABASE
 # =========================
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+    )
 }
 
 
@@ -120,10 +119,7 @@ USE_TZ = True
 # =========================
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
-
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -137,15 +133,16 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # =========================
-# 📩 EMAIL CONFIGURATION
+# 📩 EMAIL CONFIGURATION (FIXED)
 # =========================
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = os.environ.get('monustm0987@gmail.com')
-EMAIL_HOST_PASSWORD = os.environ.get('Monu@!098')
+# ✅ FIXED (env variables)
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
